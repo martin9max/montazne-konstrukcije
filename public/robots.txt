@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /porudzbina-poslata
+
+Sitemap: https://montaznekonstrukcije.rs/sitemap.xml

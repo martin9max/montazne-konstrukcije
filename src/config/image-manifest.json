@@ -1,0 +1,157 @@
+{
+  "aframe-6x5x5-galerija-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1920
+  },
+  "aframe-6x5x5-galerija-2": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1920
+  },
+  "aframe-6x5x5-galerija-3": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1920
+  },
+  "aframe-6x5x5-galerija-4": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1920
+  },
+  "konstrukcija-1": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "w": 1200,
+    "h": 1200
+  },
+  "konstrukcija-hala-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1440
+  },
+  "konstrukcija-krov-1": {
+    "widths": [
+      480,
+      800,
+      1200
+    ],
+    "w": 1200,
+    "h": 1200
+  },
+  "konstrukcija-nosaci-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1079
+  },
+  "konstrukcija-nosaci-2": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1079
+  },
+  "kontejnerska-dugacka-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1284
+    ],
+    "w": 1284,
+    "h": 880
+  },
+  "kontejnerska-dugacka-2": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1440
+  },
+  "kontejnerska-ploca-1": {
+    "widths": [
+      480,
+      800,
+      1199
+    ],
+    "w": 1199,
+    "h": 1199
+  },
+  "kontejnerska-stubovi-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1440
+  },
+  "kontejnerska-stubovi-2": {
+    "widths": [
+      480,
+      720
+    ],
+    "w": 720,
+    "h": 720
+  },
+  "kontejnerska-stubovi-3": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1440
+  },
+  "montaza-1": {
+    "widths": [
+      480,
+      800,
+      1200,
+      1440
+    ],
+    "w": 1440,
+    "h": 1440
+  }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<circle cx="500" cy="500" r="500" fill="#0F1C33"/>
+<circle cx="500" cy="500" r="455" fill="none" stroke="#E4E7EC" stroke-width="26"/>
+<g transform="translate(500 520) scale(1.22) translate(-502 -415)" fill="none" stroke="#E4E7EC" stroke-linecap="square">
+<path stroke-width="20" stroke-opacity=".85" d="M134 427L488 500M488 500L871 432M488 500L488 535M311 464L311 538M358 348L680 466M727 350L311 464M470 308L775 449M799 391L399 482"/>
+<path stroke-width="32" d="M134 427L582 268M582 268L871 432M134 427L137 548M582 268L582 538M871 432L867 548M358 348L358 542M727 350L727 545"/>
+<path d="M70 563 Q500 541 930 563 Q500 551 70 563Z" fill="#E4E7EC" stroke="none"/>
+</g>
+</svg>

@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!api/|images/|assets/|.*\\.(?:xml|txt|ico|svg|png|jpg|webp|js|css)$).*)", "destination": "/index.html" }
+  ]
+}
