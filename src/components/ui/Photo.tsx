@@ -26,11 +26,12 @@ export function Photo({
 }) {
   const entry = m[name]
   if (entry) {
-    const srcSet = entry.widths.map((w) => `/images/${name}-${w}.webp ${w}w`).join(', ')
+    const base = import.meta.env.BASE_URL
+    const srcSet = entry.widths.map((w) => `${base}images/${name}-${w}.webp ${w}w`).join(', ')
     const largest = entry.widths[entry.widths.length - 1]
     return (
       <img
-        src={`/images/${name}-${largest}.webp`}
+        src={`${base}images/${name}-${largest}.webp`}
         srcSet={srcSet}
         sizes={sizes}
         alt={alt}

@@ -12,7 +12,7 @@ export function App() {
   return (
     <MotionConfig reducedMotion="user">
       <LazyMotion features={domMax} strict>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '') || '/'}>
         <Suspense fallback={<div className="min-h-[70vh]" />}>
           <Routes>
             <Route element={<Layout />}>

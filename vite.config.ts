@@ -35,6 +35,8 @@ function devApi(): Plugin {
 }
 
 export default defineConfig({
+  // GitHub Pages: sajt je na /montazne-konstrukcije/ (BASE_PATH se postavlja u workflow-u); Vercel/lokalno: /
+  base: process.env.BASE_PATH || '/',
   plugins: [react(), tailwindcss(), devApi()],
   build: { chunkSizeWarningLimit: 600 },
 })
