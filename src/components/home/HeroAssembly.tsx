@@ -7,9 +7,8 @@ import { prefersReducedMotion } from '../../lib/motion'
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Hero „montaža na skrol“: kada korisnik dođe do konstrukcije, kadar se zaustavi
- * i konstrukcija se gradi kako se skroluje (temelj → stubovi → grede → krovni nosači → zatvaranje).
- * Skrol unazad vraća gradnju. Pre početka se vidi samo bledi nacrt.
+ * Hero „montaža“: kada crtež prvi put uđe u kadar, konstrukcija se sama iscrta
+ * (temelj → stubovi → grede → krovni nosači → paneli). Pre toga se vidi samo bledi nacrt.
  */
 const L = 12
 const W = 7
@@ -17,14 +16,6 @@ const H = 3.4
 const S = 46 // px po metru
 
 type Kind = 'ground' | 'post' | 'beam' | 'minor'
-
-const STAGES = [
-  { label: 'Temelj', text: 'Donji ram se postavlja na betonske stope ili ploču.' },
-  { label: 'Stubovi', text: 'Stubovi se spajaju šrafovima ili zavaruju.' },
-  { label: 'Grede', text: 'Gornji ram povezuje stubove u čvrstu celinu.' },
-  { label: 'Krovni nosači', text: 'Nosači za krov, ofarbani bojom 3u1.' },
-  { label: 'Zatvaranje', text: 'Vi zatvarate panelima, drvetom ili limom.' },
-]
 
 export function HeroAssembly({ className = '' }: { className?: string }) {
   const wrap = useRef<HTMLDivElement>(null)
@@ -63,26 +54,7 @@ export function HeroAssembly({ className = '' }: { className?: string }) {
 
   useLayoutEffect(() => {
     const el = wrap.current
-    if (!el) return
-    const stageEls = el.querySelectorAll<HTMLElement>('[data-stage]')
-    const bar = el.querySelector<HTMLElement>('[data-progress]')
-    const pct = el.querySelector<HTMLElement>('[data-pct]')
-    const caption = el.querySelector<HTMLElement>('[data-caption]')
-
-    const setStage = (p: number) => {
-      const i = Math.min(STAGES.length - 1, Math.floor(p * STAGES.length * 0.999))
-      stageEls.forEach((s, k) => {
-        s.dataset.state = k < i ? 'done' : k === i ? 'active' : 'todo'
-      })
-      if (caption) caption.textContent = STAGES[i].text
-      if (bar) bar.style.transform = `scaleX(${p})`
-      if (pct) pct.textContent = `${Math.round(p * 100)}%`
-    }
-
-    if (prefersReducedMotion()) {
-      setStage(1)
-      return
-    }
+    if (!el || prefersReducedMotion()) return
 
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(el)
@@ -100,43 +72,29 @@ export function HeroAssembly({ className = '' }: { className?: string }) {
       gsap.set(minor, { y: -16, opacity: 0 })
       gsap.set(panels, { opacity: 0 })
 
-      // svaka faza traje 1 jedinicu → lako mapiranje na nazive faza
-      const tl = gsap.timeline({ defaults: { ease: 'none' } })
-      tl.to(ground, { strokeDashoffset: 0, duration: 1, stagger: { amount: 0.6 } }, 0)
-        .to(posts, { strokeDashoffset: 0, duration: 0.5, stagger: { amount: 0.5 } }, 1)
-        .to(beams, { y: 0, opacity: 1, duration: 0.45, ease: 'back.out(2)', stagger: { amount: 0.55 } }, 2)
-        .to(minor, { y: 0, opacity: 0.75, duration: 0.4, stagger: { amount: 0.6 } }, 3)
-        .to(panels, { opacity: 1, duration: 0.5, stagger: { amount: 0.5 } }, 4)
-        .to({}, { duration: 0.001 }, 5)
+      const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } })
+      tl.to(ground, { strokeDashoffset: 0, duration: 0.8, stagger: 0.04, ease: 'power2.inOut' })
+        .to(posts, { strokeDashoffset: 0, duration: 0.55, stagger: 0.05 }, '-=0.2')
+        .to(beams, { y: 0, opacity: 1, duration: 0.55, stagger: 0.05, ease: 'back.out(2.2)' }, '-=0.15')
+        .to(minor, { y: 0, opacity: 0.75, duration: 0.4, stagger: 0.03 }, '-=0.25')
+        .to(panels, { opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power1.out' }, '-=0.1')
 
-      const mobile = window.innerWidth < 768
+      // kreće u trenutku kada se gornja ivica crteža pojavi na ekranu (samo jednom)
       ScrollTrigger.create({
         trigger: el,
-        // desktop: dno bloka malo iznad dna ekrana; telefon: centrirano ispod headera (dole je dugme „Pozovi“)
-        start: () => {
-          if (window.innerWidth >= 768) return `bottom ${window.innerHeight - 28}px`
-          const header = document.querySelector('header')?.getBoundingClientRect().height ?? 72
-          return `center ${Math.round((window.innerHeight + header) / 2)}px`
-        },
-        invalidateOnRefresh: true,
-        end: mobile ? '+=110%' : '+=140%',
-        pin: true,
-        pinSpacing: true, // roditelj je flex, pa mora eksplicitno
-        scrub: 0.6,
-        animation: tl,
-        onUpdate: (self) => setStage(self.progress),
+        start: 'top bottom',
+        once: true,
+        onEnter: () => tl.play(),
       })
-      setStage(0)
     }, el)
     return () => ctx.revert()
   }, [])
 
   return (
     <div ref={wrap} className={`relative ${className}`}>
-      {/* visina crteža je ograničena tako da ceo blok (crtež + faze) stane ispod headera */}
       <svg
         viewBox={vb}
-        className="mx-auto block h-auto w-full max-h-[calc(100svh-16rem)] sm:max-h-[calc(100svh-16.5rem)]"
+        className="mx-auto block h-auto w-full"
         aria-hidden="true"
         fill="none"
         strokeLinecap="round"
@@ -163,34 +121,6 @@ export function HeroAssembly({ className = '' }: { className?: string }) {
           />
         ))}
       </svg>
-
-      {/* faze gradnje */}
-      <div className="mx-auto mt-5 max-w-3xl">
-        <div className="flex items-center gap-4">
-          <div className="relative h-[3px] flex-1 bg-white/15">
-            <div data-progress className="absolute inset-0 origin-left bg-white" style={{ transform: 'scaleX(0)' }} />
-          </div>
-          <span data-pct className="w-12 text-right font-mono text-sm tabular-nums text-white/70">
-            0%
-          </span>
-        </div>
-        <ol className="mt-4 hidden grid-cols-5 gap-2 sm:grid">
-          {STAGES.map((s, i) => (
-            <li
-              key={s.label}
-              data-stage
-              data-state={i === 0 ? 'active' : 'todo'}
-              className="border-t-2 border-white/15 pt-2 text-left text-xs font-bold uppercase tracking-[0.14em] text-white/35 transition-colors duration-300 data-[state=active]:border-white data-[state=active]:text-white data-[state=done]:border-white/60 data-[state=done]:text-white/70"
-            >
-              <span className="mr-1.5 font-mono text-white/40">{String(i + 1).padStart(2, '0')}</span>
-              {s.label}
-            </li>
-          ))}
-        </ol>
-        <p data-caption className="mt-4 min-h-[1.5em] text-center text-base text-white/80 md:text-lg" aria-live="off">
-          {STAGES[0].text}
-        </p>
-      </div>
     </div>
   )
 }
