@@ -7,7 +7,7 @@ export function Contact() {
   const location = business.address ?? business.place
   const items = [
     {
-      icon: <MailIcon className="h-6 w-6" />,
+      icon: <MailIcon className="h-10 w-10" />,
       label: 'Email',
       // prelom dozvoljen samo ispred @, da se adresa ne lomi usred reči
       value: (
@@ -19,14 +19,14 @@ export function Contact() {
       href: `mailto:${business.email}`,
     },
     {
-      icon: <InstagramIcon className="h-6 w-6" />,
+      icon: <InstagramIcon className="h-10 w-10" />,
       label: 'Instagram',
       value: business.instagram.handle,
       href: business.instagram.url,
       external: true,
     },
     {
-      icon: <PinIcon className="h-6 w-6" />,
+      icon: <PinIcon className="h-10 w-10" />,
       label: 'Lokacija',
       value: business.serviceArea ? `${location} · isporuka: ${business.serviceArea}` : location,
       href: business.mapUrl ?? undefined,
@@ -51,8 +51,8 @@ export function Contact() {
           {items.map((it) => {
             const inner = (
               <>
-                <span className="text-white/60">{it.icon}</span>
-                <span className="eyebrow mt-4 block text-white/50">{it.label}</span>
+                <span className="block text-white/80">{it.icon}</span>
+                <span className="eyebrow mt-5 block text-white/50">{it.label}</span>
                 <span className="mt-1 block text-base font-semibold md:text-[1.05rem]">{it.value}</span>
               </>
             )
