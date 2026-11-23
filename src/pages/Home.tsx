@@ -5,7 +5,6 @@ import { Process } from '../components/home/Process'
 import { Projects } from '../components/home/Projects'
 import { FAQ } from '../components/home/FAQ'
 import { Contact } from '../components/home/Contact'
-import { ConfiguratorTeaser } from '../components/home/ConfiguratorTeaser'
 import { Seo } from '../components/ui/Seo'
 import { business } from '../config/business'
 import { useScrollReveal } from '../lib/useScrollReveal'
@@ -22,7 +21,6 @@ export function Home() {
       />
       <Hero />
       <Products />
-      <ConfiguratorTeaser />
       <Process />
       <Projects />
       <FAQ />

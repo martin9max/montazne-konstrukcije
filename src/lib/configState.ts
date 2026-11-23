@@ -136,19 +136,14 @@ export function purposeLabel(s: ConfigState): string {
   return purposes.find((p) => p.id === s.purpose)?.name ?? ''
 }
 
-/** Čitljiv sažetak u redovima (za sažetak, potvrdu i poruku vlasniku) */
+/** Čitljiv sažetak u redovima (potvrda i poruka vlasniku). Spajanje, boja i dodaci se dogovaraju telefonom. */
 export function summaryRows(s: ConfigState): { label: string; value: string }[] {
   const p = getProduct(s.type)
   const rows = [{ label: 'Tip', value: p.name }]
   if (isBuildType(s.type)) {
     rows.push({ label: 'Dimenzije', value: dimsLabel(s) })
     rows.push({ label: 'Površina', value: `${fmtNum(area(s), 1)} m²` })
-    rows.push({ label: 'Spajanje', value: joiningOptions.find((j) => j.id === s.joining)?.name ?? '' })
-    rows.push({ label: 'Boja', value: colorLabel(s) })
   }
-  const ex = extrasList(s)
-  rows.push({ label: 'Dodaci', value: ex.length ? ex.join(', ') : 'Bez dodataka' })
-  if (s.purpose) rows.push({ label: 'Namena', value: purposeLabel(s) })
   rows.push({ label: 'Okvirni rok', value: leadTimeFor(s) })
   return rows
 }

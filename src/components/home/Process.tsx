@@ -1,7 +1,7 @@
 import { SectionHeading } from '../ui/SectionHeading'
 
 const steps = [
-  { t: 'Sklopite konstrukciju', d: 'Na sajtu u konfiguratoru, ili nas pozovite.' },
+  { t: 'Pošaljite upit', d: 'Na sajtu za minut, ili nas pozovite.' },
   { t: 'Javljamo se', d: 'Potvrđujemo detalje i cenu, u roku od 24h.' },
   { t: 'Izrada', d: '15–20 radnih dana. Za veće konstrukcije do 30.' },
   { t: 'Prevoz i montaža', d: 'Dovozimo i montiramo na Vašoj lokaciji.' },

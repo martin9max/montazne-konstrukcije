@@ -24,7 +24,7 @@ export default function OrderSuccess() {
 
   return (
     <section className="blueprint min-h-[80vh] py-14 md:py-20">
-      <Seo title="Porudžbina je poslata | Montažne Konstrukcije" description="Hvala na porudžbini." noindex />
+      <Seo title="Upit je poslat | Montažne Konstrukcije" description="Hvala na upitu." noindex />
       <div className="container-x max-w-2xl">
         <m.div
           initial={{ scale: 0.6, opacity: 0 }}
@@ -34,13 +34,13 @@ export default function OrderSuccess() {
         >
           <CheckIcon className="h-9 w-9" />
         </m.div>
-        <h1 className="display mt-6 text-4xl md:text-6xl">Porudžbina je poslata</h1>
+        <h1 className="display mt-6 text-4xl md:text-6xl">Upit je poslat</h1>
         {data?.orderId && (
           <p className="mt-4 text-lg">
-            Broj porudžbine: <strong className="font-mono text-xl tracking-wide text-navy">{data.orderId}</strong>
+            Broj upita: <strong className="font-mono text-xl tracking-wide text-navy">{data.orderId}</strong>
           </p>
         )}
-        <p className="mt-4 text-xl font-semibold">Javljamo se u roku od 24h na broj koji ste ostavili{data?.phone ? ` (${data.phone})` : ''}.</p>
+        <p className="mt-4 text-xl font-semibold">Javljamo se u roku od 24h sa cenom, na broj koji ste ostavili{data?.phone ? ` (${data.phone})` : ''}.</p>
 
         {data?.rows && (
           <dl className="mt-8 border-2 border-steel bg-white px-5">

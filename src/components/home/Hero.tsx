@@ -56,7 +56,7 @@ export function Hero() {
         </m.p>
         <m.div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row" variants={rise} initial="hidden" animate="show" custom={4}>
           <Link to="/konfigurator" className="btn btn-light h-14 text-lg">
-            Sklopi konstrukciju <ArrowRight />
+            Zatražite ponudu <ArrowRight />
           </Link>
           <a href={business.phoneHref} className="btn btn-outline h-14 text-lg text-white">
             <PhoneIcon /> Pozovi {business.phoneDisplay}

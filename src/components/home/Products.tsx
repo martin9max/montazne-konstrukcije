@@ -115,7 +115,7 @@ export function Products() {
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-auto lg:pt-8">
                   <Link to={`/konfigurator?tip=${p.id}`} className="btn btn-primary h-14 text-lg" draggable={false}>
-                    Konfiguriši <ArrowRight />
+                    Zatražite ponudu <ArrowRight />
                   </Link>
                 </div>
               </div>

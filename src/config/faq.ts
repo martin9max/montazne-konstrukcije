@@ -22,6 +22,6 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: 'Da li mogu da pošaljem svoju skicu?',
-    a: 'Možete. U konfiguratoru izaberite „Imam svoju skicu“ i slikajte je telefonom. Sajt od fotografije napravi čist crtež, Vi dodate mere i pošaljete. Može i PDF, ili nas pozovite.',
+    a: 'Možete. Kod „Zatražite ponudu“ izaberite „Imam svoju skicu“ i slikajte je telefonom. Sajt od fotografije napravi čist crtež, a Vi dodate mere. Ili nas jednostavno pozovite.',
   },
 ]

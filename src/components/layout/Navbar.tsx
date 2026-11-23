@@ -68,7 +68,7 @@ export function Navbar() {
           </a>
           {!isConfigurator && (
             <Link to="/konfigurator" className="btn btn-primary hidden min-h-11 px-5 text-[0.95rem] sm:inline-flex">
-              Napravi svoju konstrukciju
+              Zatražite ponudu
             </Link>
           )}
           <a
@@ -143,7 +143,7 @@ export function Navbar() {
             </nav>
             <div className="container-x space-y-3 pb-8">
               <Link to="/konfigurator" className="btn btn-light w-full" onClick={() => setOpen(false)}>
-                Napravi svoju konstrukciju
+                Zatražite ponudu
               </Link>
               <a href={business.phoneHref} className="btn btn-outline w-full text-white">
                 <PhoneIcon /> Pozovi {business.phoneDisplay}

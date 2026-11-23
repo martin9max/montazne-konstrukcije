@@ -20,7 +20,7 @@ export function NotFound() {
         <p className="mx-auto mt-8 max-w-md text-lg text-ink-soft">Možda je link pogrešan. Vratite se na početnu ili sklopite svoju konstrukciju.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link to="/" className="btn btn-outline-dark h-14">Početna</Link>
-          <Link to="/konfigurator" className="btn btn-primary h-14">Napravi svoju konstrukciju</Link>
+          <Link to="/konfigurator" className="btn btn-primary h-14">Zatražite ponudu</Link>
         </div>
         <BrandSeparator className="mt-14 justify-center" />
       </div>

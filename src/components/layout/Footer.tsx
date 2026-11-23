@@ -9,7 +9,7 @@ export function Footer() {
   const go = useSectionLink()
   const year = new Date().getFullYear()
   return (
-    <footer className="bg-navy-900 pb-28 pt-16 text-white md:pb-12">
+    <footer className="bg-navy-900 pb-12 pt-16 text-white">
       <div className="container-x">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>

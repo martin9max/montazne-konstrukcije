@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
-import { FloatingCall } from './FloatingCall'
 import { scrollToTarget } from '../../lib/smoothScroll'
 
 export function Layout() {
@@ -28,7 +27,6 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <FloatingCall />
     </>
   )
 }

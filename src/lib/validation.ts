@@ -29,12 +29,10 @@ export type ContactErrors = Partial<Record<keyof ContactData, string>>
 
 export function validateContact(c: ContactData): ContactErrors {
   const e: ContactErrors = {}
-  if (c.name.trim().length < 3) e.name = 'Upišite ime i prezime.'
+  if (c.name.trim().length < 2) e.name = 'Upišite ime.'
   if (!c.phone.trim()) e.phone = 'Upišite broj telefona.'
   else if (!isValidSerbianPhone(c.phone)) e.phone = 'Broj nije ispravan. Primer: 065 123 4567'
   if (c.email.trim() && !isValidEmail(c.email)) e.email = 'Email adresa nije ispravna.'
-  if (c.address.trim().length < 2) e.address = 'Upišite mesto ili adresu isporuke.'
-  if (!c.consent) e.consent = 'Potrebna je saglasnost da bismo Vas kontaktirali.'
   return e
 }
 

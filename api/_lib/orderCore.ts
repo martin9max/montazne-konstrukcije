@@ -178,7 +178,7 @@ export async function processOrder(raw: unknown, ip: string, env: Env): Promise<
   })()
 
   const tg = [
-    `<b>Nova porudžbina ${id}</b>`,
+    `<b>Novi upit ${id}</b>`,
     '',
     ...rows.map((r) => `<b>${esc(r.label)}:</b> ${esc(r.value)}`),
     sketchDims.length ? `<b>Kote na skici:</b> ${esc(sketchDims.join(' · '))}` : '',
@@ -187,7 +187,7 @@ export async function processOrder(raw: unknown, ip: string, env: Env): Promise<
     `<b>Kupac:</b> ${esc(contact.name)}`,
     `<b>Telefon:</b> <a href="tel:${phoneE164}">${esc(contact.phone)}</a>`,
     contact.email ? `<b>Email:</b> ${esc(contact.email)}` : '',
-    `<b>Mesto / adresa:</b> ${esc(contact.address)}`,
+    contact.address ? `<b>Mesto:</b> ${esc(contact.address)}` : '',
     contact.preferredDate ? `<b>Željeni termin:</b> ${esc(contact.preferredDate)}` : '',
     files.length ? `<b>Fajlovi:</b> ${files.length} (stižu ispod)` : '',
     configUrl ? `\n<a href="${esc(configUrl)}">Otvori konfiguraciju na sajtu</a>` : '',
@@ -200,19 +200,19 @@ export async function processOrder(raw: unknown, ip: string, env: Env): Promise<
       .map((r) => `<tr><td style="color:#555;border-bottom:1px solid #ddd">${esc(r.label)}</td><td style="font-weight:bold;border-bottom:1px solid #ddd">${esc(r.value)}</td></tr>`)
       .join('')}</table>`
 
-  const ownerHtml = `<h2 style="font-family:Arial">Nova porudžbina ${id}</h2>${table([
+  const ownerHtml = `<h2 style="font-family:Arial">Novi upit ${id}</h2>${table([
     ...rows,
     ...(sketchDims.length ? [{ label: 'Kote na skici', value: sketchDims.join(' · ') }] : []),
     ...(config.note ? [{ label: 'Napomena', value: config.note }] : []),
     { label: 'Kupac', value: contact.name },
     { label: 'Telefon', value: contact.phone },
     ...(contact.email ? [{ label: 'Email', value: contact.email }] : []),
-    { label: 'Mesto / adresa', value: contact.address },
+    ...(contact.address ? [{ label: 'Mesto', value: contact.address }] : []),
     ...(contact.preferredDate ? [{ label: 'Željeni termin', value: contact.preferredDate }] : []),
   ])}<p><a href="tel:${phoneE164}">Pozovi kupca</a>${configUrl ? ` · <a href="${esc(configUrl)}">Otvori konfiguraciju</a>` : ''}</p>`
 
   try {
-    await notifyOwner(env, `Nova porudžbina ${id} – ${contact.name}`, tg, ownerHtml, files, contact.email || undefined)
+    await notifyOwner(env, `Novi upit ${id} – ${contact.name}`, tg, ownerHtml, files, contact.email || undefined)
   } catch {
     return { status: 502, body: { error: 'Server trenutno ne može da prosledi porudžbinu.' } }
   }
@@ -220,13 +220,13 @@ export async function processOrder(raw: unknown, ip: string, env: Env): Promise<
   // potvrda kupcu (greška ovde ne obara porudžbinu)
   if (contact.email && isValidEmail(contact.email) && env.RESEND_API_KEY && env.ORDER_EMAIL_FROM) {
     const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#111">
-      <h2>Hvala, porudžbina ${id} je primljena</h2>
+      <h2>Hvala, upit ${id} je primljen</h2>
       <p>Javljamo se ${business.responseTime} na broj ${esc(contact.phone)} da potvrdimo detalje i cenu.</p>
       ${table(rows)}
       <p>Pitanja: <a href="${business.phoneHref}">${business.phoneDisplay}</a></p>
       <p>${business.name}</p></div>`
     try {
-      await sendEmail(env, contact.email, `Porudžbina ${id} – ${business.name}`, html, [], env.ORDER_EMAIL_TO)
+      await sendEmail(env, contact.email, `Upit ${id} – ${business.name}`, html, [], env.ORDER_EMAIL_TO)
     } catch (e) {
       console.error('Potvrda kupcu nije poslata', e)
     }

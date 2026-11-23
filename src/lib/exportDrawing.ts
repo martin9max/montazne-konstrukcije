@@ -3,8 +3,7 @@
  * u JPEG za porudžbinu: mreža, crtež sa kotama i traka sa sažetkom.
  */
 import { getProduct, isBuildType } from '../config/products'
-import { joiningOptions } from '../config/options'
-import { area, colorLabel, dimsLabel, extrasList, type ConfigState } from './configState'
+import { area, dimsLabel, type ConfigState } from './configState'
 import { fmtNum } from './format'
 
 export const DRAWING_CONTAINER_ID = 'snimak-konstrukcije'
@@ -64,8 +63,6 @@ export async function exportDrawing(state: ConfigState): Promise<File | null> {
 
   // traka sa sažetkom
   const p = getProduct(state.type)
-  const joining = joiningOptions.find((j) => j.id === state.joining)?.name ?? ''
-  const extras = extrasList(state)
   ctx.fillStyle = '#14243F'
   ctx.fillRect(0, H, W, footer)
   ctx.fillStyle = '#fff'
@@ -74,7 +71,7 @@ export async function exportDrawing(state: ConfigState): Promise<File | null> {
   ctx.fillText(`${p.name.toUpperCase()}  ·  ${dimsLabel(state)}  ·  ${fmtNum(area(state), 1)} m²`, 40, H + 56)
   ctx.font = '500 26px Manrope, Arial, sans-serif'
   ctx.fillStyle = 'rgba(255,255,255,0.85)'
-  ctx.fillText(`${joining}  ·  ${colorLabel(state)}${extras.length ? '  ·  ' + extras.join(', ') : ''}`, 40, H + 98, W - 80)
+  ctx.fillText('Spajanje, boja i dodaci: po dogovoru telefonom', 40, H + 98, W - 80)
   ctx.font = '700 20px Manrope, Arial, sans-serif'
   ctx.fillStyle = 'rgba(255,255,255,0.55)'
   ctx.fillText('KONFIGURACIJA KUPCA  •  MONTAŽNE KONSTRUKCIJE  •  BORANJAC', 40, H + 132)
