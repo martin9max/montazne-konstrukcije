@@ -31,9 +31,6 @@ export function Hero() {
       />
 
       <div className="container-x flex min-h-[78svh] flex-col items-center justify-center py-20 text-center md:min-h-[82svh] md:py-24">
-        <m.p className="eyebrow mb-6 text-white/70" variants={rise} initial="hidden" animate="show" custom={0}>
-          Isporuka i montaža širom Srbije
-        </m.p>
         <m.h1
           id="hero-title"
           className="display max-w-6xl text-[2.3rem] leading-[0.98] min-[400px]:text-[2.6rem] sm:text-6xl lg:text-[4.4rem] xl:text-[5rem]"
