@@ -4,7 +4,6 @@ import { business } from '../../config/business'
 import { BrandSeparator } from '../ui/Separator'
 import { ArrowRight, PhoneIcon } from '../ui/Icons'
 import { Photo } from '../ui/Photo'
-import { HeroAssembly } from './HeroAssembly'
 
 const rise = {
   hidden: { opacity: 0, y: 24 },
@@ -31,7 +30,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-x flex flex-col items-center pt-12 text-center md:pt-14">
+      <div className="container-x flex min-h-[78svh] flex-col items-center justify-center py-20 text-center md:min-h-[82svh] md:py-24">
         <m.p className="eyebrow mb-6 text-white/70" variants={rise} initial="hidden" animate="show" custom={0}>
           Isporuka i montaža širom Srbije
         </m.p>
@@ -64,8 +63,6 @@ export function Hero() {
           </a>
         </m.div>
 
-        <HeroAssembly className="mt-12 w-full max-w-[52rem] md:mt-16" />
-        <div className="h-10 md:h-16" aria-hidden="true" />
       </div>
     </section>
   )
