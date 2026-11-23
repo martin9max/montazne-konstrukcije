@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useSectionLink } from '../layout/useSectionLink'
 import { m } from 'framer-motion'
 import { business } from '../../config/business'
 import { BrandSeparator } from '../ui/Separator'
@@ -12,6 +12,7 @@ const rise = {
 }
 
 export function Hero() {
+  const go = useSectionLink()
   return (
     <section className="relative isolate overflow-hidden bg-navy text-white" aria-labelledby="hero-title">
       {/* fotografija u pozadini (kad stigne), prigušena teget slojem */}
@@ -55,9 +56,9 @@ export function Hero() {
           Konstrukcije po Vašim merama, na šrafljenje ili zavarene. Rok izrade 15–20 radnih dana.
         </m.p>
         <m.div className="mt-9 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row" variants={rise} initial="hidden" animate="show" custom={4}>
-          <Link to="/konfigurator" className="btn btn-light h-14 text-lg">
+          <a href="#ponuda" onClick={go('ponuda')} className="btn btn-light h-14 text-lg">
             Zatražite ponudu <ArrowRight />
-          </Link>
+          </a>
           <a href={business.phoneHref} className="btn btn-outline h-14 text-lg text-white">
             <PhoneIcon /> Pozovi {business.phoneDisplay}
           </a>

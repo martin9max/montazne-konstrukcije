@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Hero } from '../components/home/Hero'
 import { Products } from '../components/home/Products'
+import { Inquiry } from '../components/home/Inquiry'
 import { Process } from '../components/home/Process'
 import { Projects } from '../components/home/Projects'
 import { FAQ } from '../components/home/FAQ'
@@ -21,6 +22,7 @@ export function Home() {
       />
       <Hero />
       <Products />
+      <Inquiry />
       <Process />
       <Projects />
       <FAQ />

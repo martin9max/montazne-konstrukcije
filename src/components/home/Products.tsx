@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { SET_TYPE_EVENT } from '../inquiry/InquiryForm'
+import { useSectionLink } from '../layout/useSectionLink'
 import { AnimatePresence, m } from 'framer-motion'
 import { products as allProducts } from '../../config/products'
 import { Photo } from '../ui/Photo'
@@ -20,6 +21,7 @@ const variants = {
 
 /** Konstrukcije jedna po jedna, sa strelicama, tačkama i prevlačenjem */
 export function Products() {
+  const goSection = useSectionLink()
   const [[index, dir], setState] = useState<[number, number]>([0, 1])
   const total = products.length
   const p = products[index]
@@ -114,9 +116,18 @@ export function Products() {
                 )}
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:mt-auto lg:pt-8">
-                  <Link to={`/konfigurator?tip=${p.id}`} className="btn btn-primary h-14 text-lg" draggable={false}>
+                  <a
+                    href={`#ponuda`}
+                    onClick={(e) => {
+                      // izaberi ovaj tip u formularu ispod i skroluj do njega
+                      window.dispatchEvent(new CustomEvent(SET_TYPE_EVENT, { detail: p.id }))
+                      goSection('ponuda')(e)
+                    }}
+                    className="btn btn-primary h-14 text-lg"
+                    draggable={false}
+                  >
                     Zatražite ponudu <ArrowRight />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </m.article>

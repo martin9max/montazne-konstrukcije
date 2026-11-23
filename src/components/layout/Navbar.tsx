@@ -67,9 +67,9 @@ export function Navbar() {
             <span className="hidden xl:inline">{business.phoneDisplay}</span>
           </a>
           {!isConfigurator && (
-            <Link to="/konfigurator" className="btn btn-primary hidden min-h-11 px-5 text-[0.95rem] sm:inline-flex">
+            <a href="/#ponuda" onClick={go('ponuda')} className="btn btn-primary hidden min-h-11 px-5 text-[0.95rem] sm:inline-flex">
               Zatražite ponudu
-            </Link>
+            </a>
           )}
           <a
             href={business.phoneHref}
@@ -142,9 +142,16 @@ export function Navbar() {
               </ul>
             </nav>
             <div className="container-x space-y-3 pb-8">
-              <Link to="/konfigurator" className="btn btn-light w-full" onClick={() => setOpen(false)}>
+              <a
+                href="/#ponuda"
+                className="btn btn-light w-full"
+                onClick={(e) => {
+                  setOpen(false)
+                  go('ponuda')(e)
+                }}
+              >
                 Zatražite ponudu
-              </Link>
+              </a>
               <a href={business.phoneHref} className="btn btn-outline w-full text-white">
                 <PhoneIcon /> Pozovi {business.phoneDisplay}
               </a>

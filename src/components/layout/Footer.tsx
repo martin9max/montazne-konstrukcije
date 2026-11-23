@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { business } from '../../config/business'
 import { LogoFull } from '../ui/Logo'
 import { BrandSeparator } from '../ui/Separator'
@@ -29,9 +28,9 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link to="/konfigurator" className="text-white/85 hover:text-white hover:underline">
-                  Konfigurator
-                </Link>
+                <a href="/#ponuda" onClick={go('ponuda')} className="text-white/85 hover:text-white hover:underline">
+                  Zatražite ponudu
+                </a>
               </li>
             </ul>
           </nav>

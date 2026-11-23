@@ -10,8 +10,14 @@ export function Layout() {
   useEffect(() => {
     if (hash) {
       const id = hash.slice(1)
-      const t = setTimeout(() => scrollToTarget(`#${CSS.escape(id)}`), 60)
-      return () => clearTimeout(t)
+      // dva pokušaja: odmah i posle iscrtavanja slika/animacija (početna se tek učitava)
+      const go = () => scrollToTarget(`#${CSS.escape(id)}`)
+      const t1 = setTimeout(go, 60)
+      const t2 = setTimeout(go, 450)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+      }
     }
     window.scrollTo(0, 0)
     scrollToTarget(0)
