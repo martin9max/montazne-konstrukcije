@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, m } from 'framer-motion'
 import { business } from '../../config/business'
@@ -91,6 +92,8 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* meni ide direktno u <body>: header ima backdrop-blur, pa bi „fixed“ bio vezan za header umesto za ekran */}
+      {createPortal(
       <AnimatePresence>
         {open && (
           <m.div
@@ -98,7 +101,7 @@ export function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Meni"
-            className="fixed inset-0 z-50 flex flex-col bg-navy text-white"
+            className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-navy text-white"
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
@@ -158,7 +161,9 @@ export function Navbar() {
             </div>
           </m.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+        document.body,
+      )}
     </header>
   )
 }
