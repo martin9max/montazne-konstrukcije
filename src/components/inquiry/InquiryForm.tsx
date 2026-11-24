@@ -236,7 +236,7 @@ export function InquiryForm({ syncUrl = false, titleAs = 'h2' }: InquiryFormProp
                         onClick={() => update({ presetId: null })}
                         className={`min-h-12 border-2 px-4 text-base font-bold ${state.presetId === null ? 'border-navy bg-navy text-white' : 'border-line bg-white hover:border-navy/50'}`}
                       >
-                        Druga dimenzija
+                        Unesite željenu dimenziju
                       </button>
                     </div>
 
